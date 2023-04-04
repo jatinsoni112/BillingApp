@@ -1,0 +1,36 @@
+import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import ItemNavigator from './ItemNavigator';
+// import MenuScreen from '../Screens/MenuScreen';
+import CustomerNavigator from './CustomerNavigator';
+import SettingsNavigator from './SettingsNavigator';
+import WelcomeScreen from '../Screens/WelcomeScreen';
+import Constraints from '../utils/Constraints';
+
+const Stack = createNativeStackNavigator();
+
+const MenuNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name={Constraints.MENU} component={MenuScreen} />
+      <Stack.Screen
+        name={Constraints.CUSTOMER_LIST}
+        component={CustomerNavigator}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Constraints.ITEM_LIST}
+        component={ItemNavigator}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SettingsScreen"
+        component={SettingsNavigator}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name={Constraints.LOGOUT} component={WelcomeScreen} />
+    </Stack.Navigator>
+  );
+};
+export default MenuNavigator;

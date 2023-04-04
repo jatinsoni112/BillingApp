@@ -1,0 +1,53 @@
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+
+import auth from '@react-native-firebase/auth';
+
+import Screen from '../Screen';
+import Constraints from '../utils/Constraints';
+import TouchableText from '../components/TouchableText';
+
+const MenuScreen = ({navigation}) => {
+  const settingPress = () => {
+    navigation.navigate('SettingsScreen');
+  };
+  const customerPress = () => {
+    navigation.navigate(Constraints.CUSTOMER_LIST);
+  };
+  const itemPress = () => {
+    navigation.navigate(Constraints.ITEM_LIST);
+  };
+  const logout = () => {
+    auth().signOut();
+  };
+  return (
+    <Screen style={styles.container}>
+      <TouchableText
+        icon="cog-outline"
+        title={Constraints.SETTINGS}
+        onPress={settingPress}
+      />
+      <TouchableText
+        icon="account"
+        title={Constraints.CUSTOMER_LIST}
+        onPress={customerPress}
+      />
+      <TouchableText
+        icon="cart"
+        title={Constraints.ITEM_LIST}
+        onPress={itemPress}
+      />
+      <TouchableText
+        icon="logout"
+        title={Constraints.LOGOUT}
+        onPress={logout}
+      />
+    </Screen>
+  );
+};
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+});
+export default MenuScreen;
